@@ -22,7 +22,7 @@
 
 ## 🌐 Live App
 
-👉 [Click here to try the app](https://yourusername.streamlit.app)
+👉 [Click here to try the app](https://smart-ai-interviewq.streamlit.app/)
 
 ---
 
