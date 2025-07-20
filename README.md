@@ -11,14 +11,25 @@
 - ✅ Generates 8–12 technical interview questions
 - 📄 Download questions as a neatly formatted PDF
 - 🔐 Secure API key handling using Streamlit secrets
-- 
+
 - 💬 **Mock Interview Chatbot**  
   An AI-powered interview simulator that chats with you like a real interviewer based on your resume context.
 
 
 ## 🖼️ Demo Screenshot
 
-![Smart InterviewQAI Demo](https://cdn-icons-png.flaticon.com/512/4712/4712100.png)
+
+### 📄 Resume Upload Interface
+![Resume Upload](./assets/interface.png)
+
+### 💬 Mock Interview Chatbot
+![Chatbot](./assets/Mock.png)
+
+### 📝 PDF Export Preview
+![PDF](./assets/Pdf.png)
+
+### 📝 smartQai tips
+![PDF](./assets/tips.png)
 
 ---
 
