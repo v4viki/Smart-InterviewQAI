@@ -41,6 +41,11 @@ st.set_page_config(
 )
 
 # ============ Sidebar ============
+st.sidebar.title("🧠 Interview Question Settings")
+
+difficulty = st.sidebar.selectbox("Select Difficulty", ["Easy", "Medium", "Hard"])
+category = st.sidebar.selectbox("Select Category", ["DSA", "OS", "DBMS", "CN", "HR"])
+count = st.sidebar.slider("Number of Questions", 1, 5, 1)  # Generate multiple
 
 with st.sidebar:
     st.image("https://cdn-icons-png.flaticon.com/512/4712/4712100.png", width=100)
@@ -99,7 +104,8 @@ if st.button("✨ Generate Interview Questions", use_container_width=True):
     else:
         with st.spinner("🧠 Analyzing your resume..."):
             try:
-                response = generate_questions(final_text)
+                response = generate_questions(final_text, difficulty=difficulty, category=category, count=count)
+
                 questions_list = [q.strip() for q in response.split("\n") if q.strip()]
 
                 if questions_list:
