@@ -1,4 +1,3 @@
-# generator.py
 import requests
 import os
 from dotenv import load_dotenv
@@ -6,7 +5,7 @@ from dotenv import load_dotenv
 # Load API key from .env
 load_dotenv()
 
-def generate_questions(resume_text):
+def generate_questions(resume_text, difficulty="Medium", category="General", count=5):
     api_key = os.getenv("MISTRAL_API_KEY")
 
     if not api_key:
@@ -18,16 +17,16 @@ def generate_questions(resume_text):
     }
 
     prompt = f"""
-You are a technical HR interviewer. Based on the following resume, generate 5 smart technical interview questions relevant to the candidate’s experience, projects, and skills. Be concise.
+You are a technical HR interviewer. Based on the following resume, generate {count} {difficulty}-level technical interview questions relevant to the candidate’s experience, projects, and skills in the domain of {category}. Ensure the questions are smart, concise, and contextual to their resume.
 
 Resume:
-\"\"\"
+\"\"\" 
 {resume_text}
 \"\"\"
 """
 
     data = {
-        "model": "mistral-small",  # You can also use mistral-medium or mistral-large
+        "model": "mistral-small",  # Options: mistral-small, mistral-medium, mistral-large
         "messages": [
             {"role": "user", "content": prompt}
         ]
