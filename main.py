@@ -4,6 +4,7 @@ from generator import generate_questions
 from fpdf import FPDF
 from io import BytesIO
 import fitz  # PyMuPDF
+import chatbot
 
 # ============ Utility Functions ============
 
@@ -64,11 +65,19 @@ st.markdown("<h1 style='text-align: center; color: #3366cc;'>🚀 Smart Intervie
 st.markdown("<p style='text-align: center; font-size: 16px;'>Generate job-ready questions tailored to your skills and experience!</p>", unsafe_allow_html=True)
 with st.expander("💡 How to Use This App", expanded=False):
     st.markdown("""
+                 ### 📄 Resume-Based Question Generator 
     - **Upload your resume** as a PDF *or* paste your resume text manually.
     - The app uses **AI** to generate 5–10 technical interview questions.
     - You can **download** the questions as a clean PDF.
     - Make sure your resume is detailed with technical skills/projects for better results.
-    """)
+    
+    
+        ### 🤖 Mock Interview Chatbot  
+    1. Scroll down to **'💬 Launch Mock Interview Chat'**.  
+    2. Type questions or responses like in a real interview.  
+    3. Get interactive replies from the AI.  """
+
+    )
 
 st.markdown("### 📥 Resume Input")
 
@@ -131,6 +140,35 @@ if st.button("✨ Generate Interview Questions", use_container_width=True):
 
             except Exception as e:
                 st.error(f"❌ Error: `{e}`")
+                
+# ============ Mock Interview Chatbot Section ============
+
+st.markdown("### 🧑‍💼 Mock Interview Chatbot")
+with st.expander("💬 Launch Mock Interview Chat", expanded=False):
+    st.markdown("Simulate a real-time technical interview. Ask anything or answer as a candidate!")
+
+    if "chat_history" not in st.session_state:
+        st.session_state.chat_history = [
+            {"role": "system", "content": "You are a technical interviewer conducting a mock interview with a candidate."}
+        ]
+
+    for msg in st.session_state.chat_history[1:]:
+        if msg["role"] == "user":
+            st.chat_message("🧑‍🎓 Candidate").markdown(msg["content"])
+        else:
+            st.chat_message("🤖 Interviewer").markdown(msg["content"])
+
+    user_input = st.chat_input("Type your question or answer...")
+
+    if user_input:
+        st.session_state.chat_history.append({"role": "user", "content": user_input})
+        with st.spinner("🤖 Thinking..."):
+            try:
+                response = chatbot.ask_mistral_chat(st.session_state.chat_history)
+                st.session_state.chat_history.append({"role": "assistant", "content": response})
+                st.chat_message("🤖 Interviewer").markdown(response)
+            except Exception as e:
+                st.error(f"Error: {e}")
 
 # ============ Footer ============
 
