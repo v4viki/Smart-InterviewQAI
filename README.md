@@ -11,8 +11,10 @@
 - ✅ Generates 8–12 technical interview questions
 - 📄 Download questions as a neatly formatted PDF
 - 🔐 Secure API key handling using Streamlit secrets
+- 
+- 💬 **Mock Interview Chatbot**  
+  An AI-powered interview simulator that chats with you like a real interviewer based on your resume context.
 
----
 
 ## 🖼️ Demo Screenshot
 
