@@ -2,7 +2,6 @@ import requests
 import os
 from dotenv import load_dotenv
 
-# Load API key from .env
 load_dotenv()
 
 def generate_questions(resume_text, difficulty="Medium", category="General", count=5):
@@ -20,13 +19,13 @@ def generate_questions(resume_text, difficulty="Medium", category="General", cou
 You are a technical HR interviewer. Based on the following resume, generate {count} {difficulty}-level technical interview questions relevant to the candidate’s experience, projects, and skills in the domain of {category}. Ensure the questions are smart, concise, and contextual to their resume.
 
 Resume:
-\"\"\" 
+\"\"\"
 {resume_text}
 \"\"\"
 """
 
     data = {
-        "model": "mistral-small",  # Options: mistral-small, mistral-medium, mistral-large
+        "model": "mistral-small",
         "messages": [
             {"role": "user", "content": prompt}
         ]
