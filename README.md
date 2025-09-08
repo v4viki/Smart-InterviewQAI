@@ -35,7 +35,7 @@
 
 ## 🌐 Live App
 
-👉 [Click here to try the app](https://smart-ai-interviewq.streamlit.app/)
+👉 [Click here to try the app](https://smartai-interviewq.streamlit.app/)
 
 ---
 
